@@ -1,64 +1,41 @@
-import React, { Component } from "react";
+import React, {useEffect, useState} from "react";
+//lodash
 import _ from "lodash";
+//youtube api search
 import YTSearch from "youtube-api-search";
+//components
 import SearchBar from "./components/search_bar";
 import VideoList from "./components/video_list";
 import VideoDetail from "./components/video_detail";
 
-const API_KEY = "ADD_API_KEY_HERE";
+const API_KEY = "AIzaSyCbcQMTPqAevOao2BQsQadm5SFTZljP2dM";
 
-class App extends Component {
-  /**
-   * Lifecycle method that initializes the state of the component
-   * @param {*} props
-   */
-  constructor(props) {
-    super(props);
-    this.state = {
-      videos: [],
-      selectedVideo: null,
-    };
-  }
+const App = () => {
+  const [videos, setVideos] = useState([]),
+      [selectedVideo, setSelectedVideo] = useState(null);
 
-  /**
-   * Lifecycle method that is being called just after the component did mount
-   */
-  componentDidMount() {
-    this.videoSearch("liverpool");
-  }
+  useEffect(() => {
+    videoSearch("liverpool");
+  }, []);
 
-  /**
-   * Function that gets the search-term and returns a list of videos
-   * @param {*} term
-   */
-  videoSearch(term) {
+  const videoSearch = _.debounce((term) => {
     YTSearch({ key: API_KEY, term: term }, (videos) => {
-      console.log("videos", videos);
-      this.setState({
-        videos: videos,
-        selectedVideo: videos[0],
-      });
-    });
-  }
 
-  /**
-   * Lifecycle method that is responsible to make the component visible to the browser
-   */
-  render() {
-    const videoSearch = _.debounce((term) => {
-      this.videoSearch(term);
-    }, 300);
-    return (
+      setVideos(videos);
+      setSelectedVideo(videos[0])
+    });
+  }, 300);
+
+  return (
       <div>
         <SearchBar onSearchTermChange={videoSearch} />
-        <VideoDetail video={this.state.selectedVideo} />
+        <VideoDetail video={selectedVideo} />
         <VideoList
-          onVideoSelect={(selectedVideo) => this.setState({ selectedVideo })}
-          videos={this.state.videos}
+            onVideoSelect={(video) => setSelectedVideo(video )}
+            videos={videos}
         />
       </div>
-    );
-  }
+  );
 }
 
 export default App;
