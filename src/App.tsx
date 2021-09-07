@@ -10,7 +10,7 @@ import {CommentEntry} from "./interfaces/CommentsInterface";
 //constants
 import {formatComments} from "./constants/Helpers";
 //components
-import SearchBar from "./components/search_bar";
+import SearchBar from "./components/SearchBar";
 import VideoList from "./components/video_list";
 import VideoDetail from "./components/video_detail";
 

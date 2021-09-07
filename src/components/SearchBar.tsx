@@ -1,9 +1,11 @@
-import React, {useState} from "react";
+import React, {useState, FC, ChangeEvent} from "react";
+//interfaces
+import { SearchBarInterface } from "../interfaces/SearchBarInterface";
 
-const SearchBar = ({onSearchTermChange}) => {
+const SearchBar: FC<SearchBarInterface> = ({onSearchTermChange}) => {
     const [term, setTerm] = useState('');
 
-    const onInputChange = ({target: {value}}) => {
+    const onInputChange = ({target: {value}}: ChangeEvent<HTMLInputElement> ) => {
         setTerm(value);
         onSearchTermChange(value);
     }
