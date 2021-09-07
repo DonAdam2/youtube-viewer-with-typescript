@@ -11,6 +11,10 @@
   max-width: 64px;
 }
 
+.video-detail {
+  background-color: #F9F9F9;
+}
+
 .video-detail .details {
   margin-top: 10px;
   padding: 10px;
@@ -18,10 +22,42 @@
   border-radius: 4px;
 }
 
-.list-group-item {
+.list-group-item, .comment-block .see-more {
   cursor: pointer;
 }
 
 .list-group-item:hover {
   background-color: #eee;
+}
+
+/*comments*/
+.comments-number {
+  font-size: 16px;
+  letter-spacing: 0.1px;
+  line-height: 22px;
+}
+
+.comment-block {
+  display: flex;
+}
+
+.comment-block .wrapper {
+  padding: 5px;
+}
+
+.comment-block .author-image {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.comment-block .author-name {
+  font-weight: bold;
+  margin-bottom: 2px;
+  padding-right: 10px;
+  font-size: 12px;
+}
+
+.comment-block .date {
+  font-size: 12px;
 }

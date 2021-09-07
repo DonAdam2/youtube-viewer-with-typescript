@@ -1,6 +1,8 @@
 import React from "react";
+//components
+import Comment from "./Comment";
 
-const VideoDetail = ({video}) => {
+const VideoDetail = ({video, comments}) => {
     if (!video) {
         return <div>Loading...</div>;
     }
@@ -21,6 +23,11 @@ const VideoDetail = ({video}) => {
                 <div>{video.snippet.title}</div>
                 <div>{video.snippet.description}</div>
             </div>
+            <hr/>
+            <p className='comments-number'>{comments.length} comments</p>
+            {comments.map((el) => (
+                <Comment key={el.id} commentData={el}/>
+            ))}
         </div>
     );
 };
