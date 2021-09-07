@@ -1,8 +1,10 @@
-import React from "react";
+import React, {FC} from "react";
+//interfaces
+import {VideoDetailsInterface} from "../interfaces/VideoDetailsInterface";
 //components
 import Comment from "./Comment";
 
-const VideoDetail = ({video, comments}) => {
+const VideoDetail: FC<VideoDetailsInterface> = ({video, comments}) => {
     if (!video) {
         return <div>Loading...</div>;
     }

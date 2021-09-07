@@ -12,7 +12,7 @@ import {formatComments} from "./constants/Helpers";
 //components
 import SearchBar from "./components/SearchBar";
 import VideoList from "./components/video_list";
-import VideoDetail from "./components/video_detail";
+import VideoDetail from "./components/VideoDetail";
 
 const API_KEY = "AIzaSyCbcQMTPqAevOao2BQsQadm5SFTZljP2dM";
 
@@ -60,7 +60,7 @@ const App: FC = () => {
     return (
         <div>
             <SearchBar onSearchTermChange={videoSearch}/>
-            <VideoDetail video={selectedVideo} comments={comments}/>
+            {selectedVideo && <VideoDetail video={selectedVideo} comments={comments}/>}
             <VideoList
                 onVideoSelect={(video: Video) => setSelectedVideo(video)}
                 videos={videos}
