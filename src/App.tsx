@@ -10,7 +10,7 @@ import {State} from "./store/rootReducer";
 //actions
 import {fetchYoutubeVideos, setSelectedYoutubeVideo} from "./store/app/actions/AppActions";
 //selectors
-import {getAppSelectedYoutubeVideo, getAppYoutubeVideos} from "./store/app/selectors/AppSelectors";
+import {getAppSelectedYoutubeVideo} from "./store/app/selectors/AppSelectors";
 //constants
 import {API_KEY, formatComments} from "./constants/Helpers";
 //components
@@ -20,7 +20,6 @@ import VideoDetail from "./components/VideoDetail";
 
 const App: FC = () => {
     const dispatch = useDispatch(),
-        videos = useSelector((state: State) => getAppYoutubeVideos(state)),
         selectedVideo = useSelector((state: State) => getAppSelectedYoutubeVideo(state)),
         [comments, setComments] = useState<CommentEntry[]>([]);
 
@@ -59,7 +58,6 @@ const App: FC = () => {
             {selectedVideo && <VideoDetail comments={comments}/>}
             <VideoList
                 onVideoSelect={(video: Video) => dispatch(setSelectedYoutubeVideo(video))}
-                videos={videos}
             />
         </div>
     );
