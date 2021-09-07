@@ -13,10 +13,6 @@ const VideoDetail: FC = () => {
     const video: Video = useSelector((state: State) => getAppSelectedYoutubeVideo(state)),
         comments: CommentEntry[] = useSelector((state: State) => getAppSelectedYoutubeVideoComments(state));
 
-    if (!video) {
-        return <div>Loading...</div>;
-    }
-
     const videoId = video.id.videoId,
         url = `https://www.youtube.com/embed/${videoId}`;
 

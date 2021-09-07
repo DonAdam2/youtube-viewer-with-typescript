@@ -10,6 +10,7 @@ import {getAppSelectedYoutubeVideo} from "./store/app/selectors/AppSelectors";
 import SearchBar from "./components/SearchBar";
 import VideoList from "./components/VideoList";
 import VideoDetail from "./components/VideoDetail";
+import Loader from "./components/loader/Loader";
 
 const App: FC = () => {
     const dispatch = useDispatch(),
@@ -26,11 +27,15 @@ const App: FC = () => {
     }, [selectedVideo, dispatch]);
 
     return (
-        <div>
+        <>
             <SearchBar />
-            <VideoDetail />
-            <VideoList />
-        </div>
+            {!selectedVideo ? <Loader/> : (
+                <>
+                    <VideoDetail />
+                    <VideoList />
+                </>
+            )}
+        </>
     );
 }
 
