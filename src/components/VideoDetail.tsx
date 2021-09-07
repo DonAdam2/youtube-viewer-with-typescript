@@ -1,15 +1,16 @@
 import React, {FC} from "react";
 import {useSelector} from "react-redux";
 //interfaces
-import {VideoDetailsInterface} from "../interfaces/VideoDetailsInterface";
 import {State} from "../store/rootReducer";
+import {CommentEntry} from "../interfaces/CommentsInterface";
 //selectors
-import {getAppSelectedYoutubeVideo} from "../store/app/selectors/AppSelectors";
+import {getAppSelectedYoutubeVideo, getAppSelectedYoutubeVideoComments} from "../store/app/selectors/AppSelectors";
 //components
 import Comment from "./Comment";
 
-const VideoDetail: FC<VideoDetailsInterface> = ({comments}) => {
-    const video = useSelector((state: State) => getAppSelectedYoutubeVideo(state));
+const VideoDetail: FC = () => {
+    const video = useSelector((state: State) => getAppSelectedYoutubeVideo(state)),
+        comments = useSelector((state: State) => getAppSelectedYoutubeVideoComments(state));
 
     if (!video) {
         return <div>Loading...</div>;
@@ -33,7 +34,7 @@ const VideoDetail: FC<VideoDetailsInterface> = ({comments}) => {
             </div>
             <hr/>
             <p className='comments-number'>{comments.length} comments</p>
-            {comments.map((el) => (
+            {comments.map((el: CommentEntry) => (
                 <Comment key={el.id} commentData={el}/>
             ))}
         </div>

@@ -5,7 +5,7 @@ import {State} from "./store/rootReducer";
 //actions
 import {fetchYoutubeVideos, setSelectedYoutubeVideoComments} from "./store/app/actions/AppActions";
 //selectors
-import {getAppSelectedYoutubeVideo, getAppSelectedYoutubeVideoComments} from "./store/app/selectors/AppSelectors";
+import {getAppSelectedYoutubeVideo} from "./store/app/selectors/AppSelectors";
 //components
 import SearchBar from "./components/SearchBar";
 import VideoList from "./components/VideoList";
@@ -13,23 +13,22 @@ import VideoDetail from "./components/VideoDetail";
 
 const App: FC = () => {
     const dispatch = useDispatch(),
-        selectedVideo = useSelector((state: State) => getAppSelectedYoutubeVideo(state)),
-        comments = useSelector((state: State) => getAppSelectedYoutubeVideoComments(state));
+        selectedVideo = useSelector((state: State) => getAppSelectedYoutubeVideo(state));
 
     useEffect(() => {
         dispatch(fetchYoutubeVideos('liverpool'));
-    }, []);
+    }, [dispatch]);
 
     useEffect(() => {
         if (selectedVideo) {
             dispatch(setSelectedYoutubeVideoComments())
         }
-    }, [selectedVideo]);
+    }, [selectedVideo, dispatch]);
 
     return (
         <div>
             <SearchBar />
-            {selectedVideo && <VideoDetail comments={comments}/>}
+            {selectedVideo && <VideoDetail />}
             <VideoList />
         </div>
     );
