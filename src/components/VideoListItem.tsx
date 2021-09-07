@@ -1,6 +1,8 @@
-import React from "react";
+import React, {FC} from "react";
+//interfaces
+import {VideoListItemInterface} from "../interfaces/VideoListItemInterface";
 
-const VideoListItem = ({ video, onVideoSelect }) => {
+const VideoListItem: FC<VideoListItemInterface> = ({ video, onVideoSelect }) => {
   const imageUrl = video.snippet.thumbnails.default.url;
 
   return (

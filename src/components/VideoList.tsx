@@ -2,7 +2,7 @@ import React, {FC} from "react";
 //interfaces
 import {VideoListInterface} from "../interfaces/VideoListInterface";
 //components
-import VideoListItem from "./video_list_item";
+import VideoListItem from "./VideoListItem";
 
 const VideoList:FC<VideoListInterface> = ({videos, onVideoSelect}) => {
     const videoItems = videos.map(video => {
