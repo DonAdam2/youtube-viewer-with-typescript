@@ -1,10 +1,16 @@
 import React, {FC} from "react";
+import {useSelector} from "react-redux";
 //interfaces
 import {VideoDetailsInterface} from "../interfaces/VideoDetailsInterface";
+import {State} from "../store/rootReducer";
+//selectors
+import {getAppSelectedYoutubeVideo} from "../store/app/selectors/AppSelectors";
 //components
 import Comment from "./Comment";
 
-const VideoDetail: FC<VideoDetailsInterface> = ({video, comments}) => {
+const VideoDetail: FC<VideoDetailsInterface> = ({comments}) => {
+    const video = useSelector((state: State) => getAppSelectedYoutubeVideo(state));
+
     if (!video) {
         return <div>Loading...</div>;
     }

@@ -56,7 +56,7 @@ const App: FC = () => {
     return (
         <div>
             <SearchBar />
-            {selectedVideo && <VideoDetail video={selectedVideo} comments={comments}/>}
+            {selectedVideo && <VideoDetail comments={comments}/>}
             <VideoList
                 onVideoSelect={(video: Video) => dispatch(setSelectedYoutubeVideo(video))}
                 videos={videos}
