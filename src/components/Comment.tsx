@@ -1,8 +1,10 @@
-import React, {useState} from 'react';
+import React, {useState, FC} from 'react';
 //date-fns
 import {formatDistanceToNow} from 'date-fns';
+//interfaces
+import {CommentsInterface} from "../interfaces/CommentsInterface";
 
-const Comment = ({commentData}) => {
+const Comment: FC<CommentsInterface> = ({commentData}) => {
     const [isSeeMoreClicked, setIsSeeMoreClicked] = useState(false);
 
     const seeMore = () => {
