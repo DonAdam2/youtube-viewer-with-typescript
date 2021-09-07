@@ -1,16 +1,11 @@
-import React, {useEffect, useState, FC} from "react";
+import React, {useEffect, FC} from "react";
 import {useDispatch, useSelector} from "react-redux";
-//axios
-import axios from "axios";
 //interfaces
-import {CommentEntry} from "./interfaces/CommentsInterface";
 import {State} from "./store/rootReducer";
 //actions
-import {fetchYoutubeVideos} from "./store/app/actions/AppActions";
+import {fetchYoutubeVideos, setSelectedYoutubeVideoComments} from "./store/app/actions/AppActions";
 //selectors
-import {getAppSelectedYoutubeVideo} from "./store/app/selectors/AppSelectors";
-//constants
-import {API_KEY, formatComments} from "./constants/Helpers";
+import {getAppSelectedYoutubeVideo, getAppSelectedYoutubeVideoComments} from "./store/app/selectors/AppSelectors";
 //components
 import SearchBar from "./components/SearchBar";
 import VideoList from "./components/VideoList";
@@ -19,34 +14,15 @@ import VideoDetail from "./components/VideoDetail";
 const App: FC = () => {
     const dispatch = useDispatch(),
         selectedVideo = useSelector((state: State) => getAppSelectedYoutubeVideo(state)),
-        [comments, setComments] = useState<CommentEntry[]>([]);
+        comments = useSelector((state: State) => getAppSelectedYoutubeVideoComments(state));
 
     useEffect(() => {
         dispatch(fetchYoutubeVideos('liverpool'));
     }, []);
 
     useEffect(() => {
-        const fetchComments = async () => {
-            try {
-                const config = {
-                        url: 'https://www.googleapis.com/youtube/v3/commentThreads',
-                        params: {
-                            key: API_KEY,
-                            textFormat: 'plainText',
-                            part: 'snippet',
-                            videoId: selectedVideo?.id.videoId,
-                            maxResults: 50,
-                        }
-                    },
-                    res = await axios(config);
-
-                setComments(formatComments(res.data.items));
-            } catch (err) {
-                console.log(err);
-            }
-        }
         if (selectedVideo) {
-            fetchComments();
+            dispatch(setSelectedYoutubeVideoComments())
         }
     }, [selectedVideo]);
 

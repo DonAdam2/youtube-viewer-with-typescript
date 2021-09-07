@@ -1,4 +1,7 @@
+//interfaces
 import {Video} from "youtube-api-search-typed/dist";
+import { CommentEntry } from "../../interfaces/CommentsInterface";
+//action types
 import {AppActionTypes} from './AppActionTypes';
 
 interface SetYoutubeVideos {
@@ -11,4 +14,9 @@ interface SetSelectedYoutubeVideo {
     video: Video
 }
 
-export type Action = SetYoutubeVideos | SetSelectedYoutubeVideo;
+interface SetSelectedYoutubeVideoComments {
+    type: AppActionTypes.SET_SELECTED_YOUTUBE_VIDEO_COMMENTS,
+    comments: CommentEntry[]
+}
+
+export type Action = SetYoutubeVideos | SetSelectedYoutubeVideo | SetSelectedYoutubeVideoComments;
