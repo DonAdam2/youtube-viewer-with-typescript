@@ -27,7 +27,7 @@ const Comment = ({commentData}) => {
                     {isSeeMoreClicked ? <span onClick={seeLess}>{commentData.textDisplay}</span> : commentData.textDisplay.slice(0, 120)}{' '}
                     {!isSeeMoreClicked && commentData.textDisplay.length > 120 && (
                         <span>
-							<span>... </span> <a onClick={seeMore} className='see-more'>See More</a>
+							<span>... </span> <span onClick={seeMore} className='see-more'>See More</span>
 						</span>
                     )}
                 </p>

@@ -24,6 +24,12 @@
 
 .list-group-item, .comment-block .see-more {
   cursor: pointer;
+  color: blue;
+  font-size: 12px;
+}
+
+.list-group-item, .comment-block .see-more:hover {
+  text-decoration: underline;
 }
 
 .list-group-item:hover {
