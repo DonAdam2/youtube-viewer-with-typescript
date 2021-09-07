@@ -1,13 +1,15 @@
 import React, {useState, FC, ChangeEvent} from "react";
-//interfaces
-import { SearchBarInterface } from "../interfaces/SearchBarInterface";
+import {useDispatch} from "react-redux";
+//actions
+import {fetchYoutubeVideos} from "../store/app/actions/AppActions";
 
-const SearchBar: FC<SearchBarInterface> = ({onSearchTermChange}) => {
-    const [term, setTerm] = useState('');
+const SearchBar: FC = () => {
+    const dispatch = useDispatch(),
+        [term, setTerm] = useState('');
 
     const onInputChange = ({target: {value}}: ChangeEvent<HTMLInputElement> ) => {
         setTerm(value);
-        onSearchTermChange(value);
+        dispatch(fetchYoutubeVideos(value));
     }
 
     return (

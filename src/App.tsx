@@ -25,7 +25,7 @@ const App: FC = () => {
         [comments, setComments] = useState<CommentEntry[]>([]);
 
     useEffect(() => {
-        videoSearch('liverpool')
+        dispatch(fetchYoutubeVideos('liverpool'));
     }, []);
 
     useEffect(() => {
@@ -53,13 +53,9 @@ const App: FC = () => {
         }
     }, [selectedVideo]);
 
-    const videoSearch = (term: string) => {
-        dispatch(fetchYoutubeVideos(term));
-    }
-
     return (
         <div>
-            <SearchBar onSearchTermChange={videoSearch}/>
+            <SearchBar />
             {selectedVideo && <VideoDetail video={selectedVideo} comments={comments}/>}
             <VideoList
                 onVideoSelect={(video: Video) => dispatch(setSelectedYoutubeVideo(video))}
