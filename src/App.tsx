@@ -2,13 +2,11 @@ import React, {useEffect, useState, FC} from "react";
 import {useDispatch, useSelector} from "react-redux";
 //axios
 import axios from "axios";
-//youtube api search
-import {Video} from "youtube-api-search-typed/dist";
 //interfaces
 import {CommentEntry} from "./interfaces/CommentsInterface";
 import {State} from "./store/rootReducer";
 //actions
-import {fetchYoutubeVideos, setSelectedYoutubeVideo} from "./store/app/actions/AppActions";
+import {fetchYoutubeVideos} from "./store/app/actions/AppActions";
 //selectors
 import {getAppSelectedYoutubeVideo} from "./store/app/selectors/AppSelectors";
 //constants
@@ -56,9 +54,7 @@ const App: FC = () => {
         <div>
             <SearchBar />
             {selectedVideo && <VideoDetail comments={comments}/>}
-            <VideoList
-                onVideoSelect={(video: Video) => dispatch(setSelectedYoutubeVideo(video))}
-            />
+            <VideoList />
         </div>
     );
 }

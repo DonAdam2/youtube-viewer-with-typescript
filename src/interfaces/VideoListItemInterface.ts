@@ -1,6 +1,5 @@
-import {Video} from "youtube-api-search-typed";
+import {Video} from "youtube-api-search-typed/dist";
 
 export interface VideoListItemInterface {
     video: Video,
-    onVideoSelect: (video: Video) => void,
 }
