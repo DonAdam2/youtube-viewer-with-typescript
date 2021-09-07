@@ -28,7 +28,7 @@ const App: FC = () => {
     return (
         <div>
             <SearchBar />
-            {selectedVideo && <VideoDetail />}
+            <VideoDetail />
             <VideoList />
         </div>
     );
