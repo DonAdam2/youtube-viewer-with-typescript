@@ -8,10 +8,10 @@ import {getAppYoutubeVideos} from "../store/app/selectors/AppSelectors";
 //components
 import VideoListItem from "./VideoListItem";
 
-const VideoList:FC = () => {
-    const videos = useSelector((state: State) => getAppYoutubeVideos(state));
+const VideoList: FC = () => {
+    const videos: Video[] = useSelector((state: State) => getAppYoutubeVideos(state));
 
-    const videoItems = videos.map((video:Video)  => {
+    const videoItems = videos.map((video: Video) => {
         return (
             <VideoListItem
                 key={video.etag}

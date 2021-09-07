@@ -1,6 +1,7 @@
 import React, {FC} from "react";
 import {useSelector} from "react-redux";
 //interfaces
+import {Video} from "youtube-api-search-typed/dist";
 import {State} from "../store/rootReducer";
 import {CommentEntry} from "../interfaces/CommentsInterface";
 //selectors
@@ -9,8 +10,8 @@ import {getAppSelectedYoutubeVideo, getAppSelectedYoutubeVideoComments} from "..
 import Comment from "./Comment";
 
 const VideoDetail: FC = () => {
-    const video = useSelector((state: State) => getAppSelectedYoutubeVideo(state)),
-        comments = useSelector((state: State) => getAppSelectedYoutubeVideoComments(state));
+    const video: Video = useSelector((state: State) => getAppSelectedYoutubeVideo(state)),
+        comments: CommentEntry[] = useSelector((state: State) => getAppSelectedYoutubeVideoComments(state));
 
     if (!video) {
         return <div>Loading...</div>;
