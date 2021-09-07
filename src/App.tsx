@@ -11,7 +11,7 @@ import {CommentEntry} from "./interfaces/CommentsInterface";
 import {formatComments} from "./constants/Helpers";
 //components
 import SearchBar from "./components/SearchBar";
-import VideoList from "./components/video_list";
+import VideoList from "./components/VideoList";
 import VideoDetail from "./components/VideoDetail";
 
 const API_KEY = "AIzaSyCbcQMTPqAevOao2BQsQadm5SFTZljP2dM";
