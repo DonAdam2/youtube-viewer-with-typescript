@@ -10,7 +10,7 @@ import {getAppSelectedYoutubeVideo, getAppSelectedYoutubeVideoComments} from "..
 import Comment from "./Comment";
 
 const VideoDetail: FC = () => {
-    const video: Video = useSelector((state: State) => getAppSelectedYoutubeVideo(state)),
+    const video: Video = useSelector((state: State) => getAppSelectedYoutubeVideo(state)) as Video,
         comments: CommentEntry[] = useSelector((state: State) => getAppSelectedYoutubeVideoComments(state));
 
     const videoId = video.id.videoId,
