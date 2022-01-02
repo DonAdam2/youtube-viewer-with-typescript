@@ -3,12 +3,10 @@ import {CommentApiEntry} from "../interfaces/CommentsInterface";
 
 export const API_KEY = "AIzaSyB_3dCjR5OHzN8Tnjo00J9job-X61aVokA";
 
-export const updateObject = (oldObject: any, UpdatedValues: any) => {
-    return {
-        ...oldObject,
-        ...UpdatedValues,
-    };
-};
+export const updateObject = <T extends object, U extends object>(oldObject: T, UpdatedValues: U) => ({
+    ...oldObject,
+    ...UpdatedValues,
+});
 
 export const formatComments = (data: CommentApiEntry[]) => {
     return data.map(el => {
